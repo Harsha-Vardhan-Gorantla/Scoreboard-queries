@@ -1,0 +1,41 @@
+#include <bits/stdc++.h>
+#define ll long long int
+#define UMP unordered_map
+#define SET unordered_set
+#define PQ priority_queue
+#define P pair
+#define V vector
+using namespace std;
+int main() 
+{
+    int t;
+    cin >> t;
+    while(t--)
+	{
+        ll n, q;
+        cin >> n >> q;
+        V<ll> a(n+1);
+        UMP<ll, ll> mp;
+        for(ll i = 1; i <= n; ++i) 
+		{
+            cin >> a[i];
+            mp[a[i]]++;
+        }
+        while(q--)
+		{
+            ll player, score;
+            cin >> player >> score;
+            if(mp[a[player]] == 1){
+                mp.erase(a[player]);
+            }
+			else
+			{
+                mp[a[player]]--;
+            }
+            mp[score]++;
+            a[player] = score;
+            cout << mp.size() + 1<< "\n";
+        }
+    }
+    return 0;
+}
